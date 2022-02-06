@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Button, Card } from 'semantic-ui-react';
 import { DataEntry, ExtensionMessage, Page } from './data_entry';
 import { Fact, Person } from './gedcomx';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { render } from 'react-dom';
 import { useEffect, useState } from 'react';
 import 'fomantic-ui-css/semantic.css';
@@ -275,11 +275,12 @@ function ExtensionIframe() {
 }
 
 render(
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="extension-iframe" element={<ExtensionIframe />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
-  </BrowserRouter>,
+  </HashRouter>,
   document.querySelector('#root')
 );
